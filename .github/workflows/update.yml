@@ -1,0 +1,23 @@
+on:
+  #schedule:
+    #- cron:  '0 18 * * 4'
+  workflow_dispatch:
+
+name: update
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: update
+        run: |
+          mkdir -p build
+          bash .github/workflows/update.sh
+      - name: commit
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add .
+          git commit --allow-empty -m "$(git log -1 --pretty=%s)"
+          git push
