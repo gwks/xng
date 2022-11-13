@@ -3,9 +3,11 @@ ENV GID=991 UID=991 IMAGE_PROXY=true REDIS_URL= LIMITER= BASE_URL= NAME= SAFE_SE
 PRIVACYPOLICY= \
 DONATION_URL= \
 CONTACT= ISSUE_URL= \
-GIT_URL= GIT_BRANCH=main \
+GIT_URL= \
 UPSTREAM_COMMIT=3a765113eefc7ac0b1ee94e9a0ac0db8069ec336
-UPSTREAM_COMMIT=3a765113eefc7ac0b1ee94e9a0ac0db8069ec336
+
+WORKDIR /usr/local/searxng
+
 RUN addgroup -g ${GID} searxng \
  &&  adduser -u ${UID} -D -h /usr/local/searxng -s /bin/sh -G searxng searxng
 
