@@ -1,3 +1,4 @@
+# use prebuild alpine image with needed python packages from base branch
 FROM alpine:latest
 ENV GID=991 UID=991 IMAGE_PROXY=true REDIS_URL= LIMITER= BASE_URL= NAME= SAFE_SEARCH=2 NEW_TAB=true \
 PRIVACYPOLICY= \
