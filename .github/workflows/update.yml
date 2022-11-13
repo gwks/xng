@@ -12,8 +12,7 @@ jobs:
         uses: actions/checkout@v3
       - name: update
         run: |
-          mkdir -p build
-          bash .github/workflows/update.sh
+          bash update.sh
       - name: commit
         run: |
           git config user.name github-actions
