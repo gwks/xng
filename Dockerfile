@@ -5,7 +5,7 @@ DONATION_URL= \
 CONTACT= ISSUE_URL= \
 GIT_URL= GIT_BRANCH=main \
 UPSTREAM_COMMIT=46ad32343a00a3333514ff7400360cafb040cfc4
-WORKDIR /usr/local/searxng
+UPSTREAM_COMMIT=3a765113eefc7ac0b1ee94e9a0ac0db8069ec336
 
 RUN addgroup -g ${GID} searxng \
  &&  adduser -u ${UID} -D -h /usr/local/searxng -s /bin/sh -G searxng searxng
