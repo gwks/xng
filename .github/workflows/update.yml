@@ -12,7 +12,7 @@ jobs:
         uses: actions/checkout@v3
       - name: update
         run: |
-          bash update.sh
+          bash ./update.sh
       - name: commit
         run: |
           git config user.name github-actions
