@@ -39,7 +39,7 @@ RUN apk upgrade --no-cache \
  && git clone https://github.com/searxng/searxng . \
  && git reset --hard ${UPSTREAM_COMMIT} \
  && chown -R searxng:searxng . \
- && su searxng -c "/usr/bin/python3 -m searx.version freeze" \
+ #&& su searxng -c "/usr/bin/python3 -m searx.version freeze" \
  && pip3 install --upgrade pip wheel setuptools \
  && pip3 install --no-cache -r requirements.txt \
  && apk del build-dependencies \
