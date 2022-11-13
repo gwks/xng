@@ -1,0 +1,33 @@
+name: SHA-Update
+
+on:
+  schedule:
+   - cron:  '45 * * * *'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        persist-credentials: false
+        fetch-depth: 0
+    - name: Create local changes
+      run: |
+        git ls-remote https://github.com/searxng/searxng |  head -1 | cut -f 1 | sed -e "s/.*/UPSTREAM_COMMIT=&/" | sed -i '8r/dev/stdin' Dockerfile && sed -i '8d' ./Dockerfile
+    - name: Get last commit message
+      id: last-commit-message
+      run: |
+        echo "::set-output name=msg::$(git log -1 --pretty=%s)"
+    - name: Commit files
+      run: |
+        git config user.name github-actions
+        git config user.email github-actions@github.com
+        git commit --allow-empty -m "${{ steps.last-commit-message.outputs.msg }}" -a
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: main
+
