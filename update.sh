@@ -1,19 +1,11 @@
 #!/bin/sh
 
-mkdir -p build
-
 echo "building theme from master branch searxng/searxng"
 
 echo "clone/pull latest searxng/searxng"
-if [ ! -d build ]
-then
-    git clone https://github.com/searxng/searxng.git build
-else
-    cd build
-    git restore .
-    git pull https://github.com/searxng/searxng.git
-    cd ..
-fi
+mkdir -p build
+git clone https://github.com/searxng/searxng.git build
+
 
 echo "delete upstream simple theme definitions"
 rm -f build/searx/static/themes/simple/src/less/definitions.less build/searx/static/themes/simple/src/less/search.less build/searx/static/themes/simple/src/less/autocomplete.less build/searx/static/themes/simple/src/less/style.less
